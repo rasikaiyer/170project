@@ -1,5 +1,6 @@
 import networkx as nx
 import os
+from random import shuffle
 
 ###########################################
 # Change this variable to the path to 
@@ -43,28 +44,34 @@ def parse_input(folder_name):
 
 
 def solve(graph, num_buses, size_bus, constraints):
-    nodes = list(graph.nodes)
+    students = list(graph.nodes)
+    shuffle(students)
 
-    bus_assignment = []
-    for i in range(num_buses):
+    friendships = list(G.edges)
+    
+    buses = []
+    for _ in range(num_buses):
         bus_assignment.append([])
- 
-    for node in nodes:
-        rowdy = True
-        for bus in bus_assignment:
-            if not len(bus) < size_bus:
-                continue
-            for i in range(len(constraints)):
-                rowdy =  all(elem in (bus + [node]) for elem in constraints[i])
-                if rowdy == False:
-                    bus.append(node)
-                    break
-            if rowdy == False:
-                break
-    output = ""
-    for i in range(num_buses):
-        output += str(bus_assignment[i]) + '\n'
-    return output
+
+    for student in students:
+
+
+    # for node in nodes:
+    #     rowdy = True
+    #     for bus in bus_assignment:
+    #         if not len(bus) < size_bus:
+    #             continue
+    #         for i in range(len(constraints)):
+    #             rowdy =  all(elem in (bus + [node]) for elem in constraints[i])
+    #             if rowdy == False:
+    #                 bus.append(node)
+    #                 break
+    #         if rowdy == False:
+    #             break
+    # output = ""
+    # for i in range(num_buses):
+    #     output += str(bus_assignment[i]) + '\n'
+    # return output
 
 def main():
     '''
