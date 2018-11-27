@@ -175,6 +175,6 @@ def main():
             output_file.write(solution)
 
             output_file.close()
-
+            
 if __name__ == '__main__':
     main()
