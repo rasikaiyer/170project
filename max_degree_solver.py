@@ -10,7 +10,7 @@ from collections import defaultdict
 ###########################################
 path_to_inputs = "./all_inputs"
 
-#number = "4"
+
 ###########################################
 # Change this variable if you want
 # your outputs to be put in a 
@@ -155,26 +155,26 @@ def main():
         the portion which writes it to a file to make sure their output is
         formatted correctly.
     '''
-    size_categories = ["large"] #["small", "medium"] #, "large"]
+    size_categories = ["small", "medium"] #, "large"]
     if not os.path.isdir(path_to_outputs):
         os.mkdir(path_to_outputs)
 
-    for i in [1035,1081,1097]:
-        number = str(i)
-        for size in size_categories:
-            category_path = path_to_inputs + "/" + size + "/" + number
-            output_category_path = path_to_outputs + "/" + size + "/" + number
-            category_dir = os.fsencode(category_path)
-            if not os.path.exists(category_path):
-                continue
-            for input_folder in os.listdir(category_dir):
-                input_name = os.fsdecode(input_folder)
-                graph, num_buses, size_bus, constraints = parse_input(category_path)
-                solution = solve(graph, num_buses, size_bus, constraints)
-                output_file = open(output_category_path + ".out", "w") 
-                output_file.write(solution)
 
-                output_file.close()
+    number = "4"
+    for size in size_categories:
+        category_path = path_to_inputs + "/" + size + "/" + number
+        output_category_path = path_to_outputs + "/" + size + "/" + number
+        category_dir = os.fsencode(category_path)
+        if not os.path.exists(category_path):
+            continue
+        for input_folder in os.listdir(category_dir):
+            input_name = os.fsdecode(input_folder)
+            graph, num_buses, size_bus, constraints = parse_input(category_path)
+            solution = solve(graph, num_buses, size_bus, constraints)
+            output_file = open(output_category_path + ".out", "w") 
+            output_file.write(solution)
+
+            output_file.close()
 
 if __name__ == '__main__':
     main()
