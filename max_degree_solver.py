@@ -159,7 +159,7 @@ def main():
     if not os.path.isdir(path_to_outputs):
         os.mkdir(path_to_outputs)
 
-    for i in [1035,1081,1097]:
+    for i in [1081]:
         number = str(i)
         for size in size_categories:
             category_path = path_to_inputs + "/" + size + "/" + number
