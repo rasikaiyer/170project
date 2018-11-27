@@ -2,6 +2,7 @@ import networkx as nx
 import os
 from random import shuffle
 from collections import defaultdict
+import random
 
 ###########################################
 # Change this variable to the path to 
@@ -10,7 +11,7 @@ from collections import defaultdict
 ###########################################
 path_to_inputs = "./all_inputs"
 
-number  = "2"
+number  = "217"
 
 ###########################################
 # Change this variable if you want
@@ -48,7 +49,7 @@ def parse_input(folder_name):
 
 def solve(graph, num_buses, size_bus, constraints):
     students = list(graph.nodes)
-    shuffle(students)
+    #shuffle(students)
 
     friendships = list(graph.edges)
     friend_map = defaultdict(list)
@@ -69,6 +70,30 @@ def solve(graph, num_buses, size_bus, constraints):
             copy = c[:]
             copy.remove(i)
             rowdy_groups[i].append(copy)
+
+    # Randomly selecting a student to put in a bu
+
+    # random_sample = random.sample(students, num_buses)
+    # for i in range(num_buses):
+    #     buses[i].append(random_sample[i])
+    #     students.remove(random_sample[i])
+
+    # # Put student with the least friends to a bus
+
+    shuffle(students)
+    #students.reverse()
+
+    # friends_map = defaultdict(list)
+    # for u, v in friendships:
+    #     friends_map[u].append(v)
+    #     friends_map[v].append(u)
+    # friends_count = [(v, len(friends_map[v])) for v in students]
+    # friends_count.sort(key = lambda v: v[1])
+    # ordered_students = [v[0] for v in friends_count]
+    # for i in range(num_buses):
+    #     buses[i].append(ordered_students[i])
+    #     students.remove(ordered_students[i])
+
 
     for student in students:
         max_friends = float("-inf")
@@ -106,7 +131,7 @@ def main():
         the portion which writes it to a file to make sure their output is
         formatted correctly.
     '''
-    size_categories = ["small", "medium"]
+    size_categories = ["small"]
     if not os.path.isdir(path_to_outputs):
         os.mkdir(path_to_outputs)
 
