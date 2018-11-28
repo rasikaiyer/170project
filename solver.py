@@ -11,7 +11,7 @@ import random
 ###########################################
 path_to_inputs = "./all_inputs"
 
-number  = "217"
+number  = "154"
 
 ###########################################
 # Change this variable if you want
@@ -78,7 +78,7 @@ def solve(graph, num_buses, size_bus, constraints):
     #     buses[i].append(random_sample[i])
     #     students.remove(random_sample[i])
 
-    # # Put student with the least friends to a bus
+    # Put student with the most friends to a bus
 
     shuffle(students)
     #students.reverse()
@@ -88,7 +88,7 @@ def solve(graph, num_buses, size_bus, constraints):
     #     friends_map[u].append(v)
     #     friends_map[v].append(u)
     # friends_count = [(v, len(friends_map[v])) for v in students]
-    # friends_count.sort(key = lambda v: v[1])
+    # friends_count.sort(reverse = True, key = lambda v: v[1])
     # ordered_students = [v[0] for v in friends_count]
     # for i in range(num_buses):
     #     buses[i].append(ordered_students[i])
@@ -98,6 +98,13 @@ def solve(graph, num_buses, size_bus, constraints):
     for student in students:
         max_friends = float("-inf")
         max_bus = None
+        # make the max_bus default be the next empty bus
+        for i in range(num_buses):
+            if len(buses[i]) == 0:
+                max_friends = 0
+                max_bus = i
+                break
+
         for i in range(num_buses):
             if len(buses[i]) == size_bus:
                 continue
@@ -131,7 +138,7 @@ def main():
         the portion which writes it to a file to make sure their output is
         formatted correctly.
     '''
-    size_categories = ["small"]
+    size_categories = ["medium"]
     if not os.path.isdir(path_to_outputs):
         os.mkdir(path_to_outputs)
 
